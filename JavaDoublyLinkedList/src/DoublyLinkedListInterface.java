@@ -6,11 +6,11 @@ public interface DoublyLinkedListInterface<T> {
 	T get(int index);
 	void clear();
 	
-	void insert(T input);
 	void delete(T input);
 	
 	void sortAscending();
 	void sortDescending();
+	void insert(Comparable input);
 	
 
 }
