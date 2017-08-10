@@ -197,12 +197,14 @@ public class DoublyLinkedList<T> implements DoublyLinkedListInterface<T>{
 		
 		Node sortEnd = this.head;
 		Node toMove = sortEnd.next;
+		Node preMove;
 		Node it;
 		while(toMove != null) { // start sorting at the second element
 			it = sortEnd;
 			
 			if(toMove.compareTo(this.head) < 0) { // if toMove is less than the head of list, move it
 				// set pointers for toMove before insert
+				it = new Node(-1);
 				toMove.prev.next = toMove.next;
 				if(toMove.next != null) toMove.next.prev = toMove.prev;
 				
@@ -215,33 +217,39 @@ public class DoublyLinkedList<T> implements DoublyLinkedListInterface<T>{
 				this.head.prev = toMove;
 				
 				this.head = toMove;
-				
+				preMove = toMove;
 				toMove= sortEnd.next;
-			} else if (toMove.compareTo(sortEnd) < 0 ){ // if toMove is less than the node behind it
-				while (toMove.compareTo(it) < 0 && it != null) { // 
-					it = it.prev;
+			} else if (toMove.compareTo(it) < 0 ){ // if toMove is less than the node behind it
+				Node iter = sortEnd;
+				while(toMove.compareTo(iter) < 0) {
+					iter = iter.prev;
 				}
+				
 				// set pointers for toMove before insert
 				toMove.prev.next = toMove.next;
 				if(toMove.next != null) toMove.next.prev = toMove.prev;
 				
+				Node toMoveNewPrev = iter;
+				Node toMoveNewNext = iter.next;
+				
+				// set pointers for toMove after insert
+				iter.next.prev = toMove;
+				iter.next = toMove;
+				
 				// set toMove pointers
-				toMove.prev = it;
-				toMove.next = it.next;
-			
-				// set pointers of nodes around toMove
-			
-				it.next = toMove;
-				it.next.prev = toMove;
+				toMove.prev = iter;
+				toMove.next = toMoveNewNext;
 				
 				// continue
 				//sortEnd = sortEnd.next;
+				preMove = toMove;
 				toMove = sortEnd.next;
+				
 			} else { // move on			
 				sortEnd = sortEnd.next;
+				preMove = toMove;
 				toMove = sortEnd.next;
 			}
-			
 		}
 		this.tail = sortEnd;
 		return;
@@ -255,6 +263,14 @@ public class DoublyLinkedList<T> implements DoublyLinkedListInterface<T>{
 		}
 		
 	}
+	
+	public void printListBackwards() {
+		Node curr = this.tail;
+		while(curr != null) {
+			System.out.print(curr.data + " ");
+			curr = curr.prev;
+		}
+	}
 	@Override
 	/**
 	 * function to sort linked list from greatest to smallest
@@ -265,18 +281,18 @@ public class DoublyLinkedList<T> implements DoublyLinkedListInterface<T>{
 		
 	}
 	class Node<T extends Comparable<T>> {
-		protected Comparable<T> data;
+		protected T data;
 		protected Node next;
 		protected Node prev;
 		
-		protected Node(Comparable<T> input) { // creates an instance of node
-			this.data = input;
+		protected Node(T input) { // creates an instance of node
+			this.data = (T) input;
 			this.next = null;
 			this.prev = null;
 		}
 		
-		public int compareTo(Node arg0) {
-			return this.data.compareTo((T) arg0.data);
+		public int compareTo(Node<T> arg0) {
+			return this.data.compareTo(arg0.data);
 		}
 	}
 }

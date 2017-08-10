@@ -8,7 +8,7 @@ public class JUnitDoublyLinkedList {
 	DoublyLinkedList charList = new DoublyLinkedList();
 	DoublyLinkedList floatList = new DoublyLinkedList();
 	
-	@Test
+	//@Test
 	public void testInsert() {
 		for(int i = 0; i < 10; i++) intList.insert(i);
 		for(float k = 0; k < 1; k += .1) floatList.insert(k);
@@ -22,7 +22,7 @@ public class JUnitDoublyLinkedList {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testDelete() {
 		System.out.println("\n\ntestDelete");
 		intList.insert(0);
@@ -45,7 +45,7 @@ public class JUnitDoublyLinkedList {
 		assertEquals(intList.get(5), null);
 	}
 	
-	@Test
+	//@Test
 	public void testDelete2() {
 		System.out.println("\n\ntestDelete2");
 
@@ -59,7 +59,7 @@ public class JUnitDoublyLinkedList {
 		assertEquals(intList.get(5), null);
 	}
 	
-	@Test
+	//@Test
 	public void testDeleteEnd() {
 		System.out.println("\n\ntestDeleteEnd");
 		intList.insert(1);
@@ -76,7 +76,7 @@ public class JUnitDoublyLinkedList {
 		assertEquals(intList.get(2), null);
 	}
 	
-	@Test
+	//@Test
 	public void testDeleteFront() {
 		System.out.println("\n\ntestDeleteFront");
 		intList.delete(3);
@@ -93,7 +93,7 @@ public class JUnitDoublyLinkedList {
 		}
 	}
 
-	@Test
+	//@Test
 	public void testDeleteMiddle() {
 		System.out.println("\n\ntestDeleteMiddle");
 		for(int i = 0; i < 5; i++) {
@@ -107,7 +107,7 @@ public class JUnitDoublyLinkedList {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void testSort() {
 		System.out.println("\n\ntestSort");
 		for(int i = 10; i >= 0; i--) intList.insert(i);
@@ -117,29 +117,78 @@ public class JUnitDoublyLinkedList {
 		intList.sortAscending();
 		System.out.println();
 		intList.printList();
+		System.out.println();
+		intList.printListBackwards();
 	}
 	
 	@Test
 	public void testSort1() {
 		System.out.println("\n\ntestSort1");
 		intList.insert(9);
-		intList.insert(2);
+		intList.insert(3);
 		intList.insert(11);
 		intList.insert(1);
 		intList.insert(7);
 		intList.insert(8);
-		intList.insert(6);
-		intList.insert(3);
 		intList.insert(4);
+		intList.insert(2);
+		intList.insert(6);
+		//intList.insert(8);
+		//intList.insert(4);
 		
 		
 		//intList.insert(12);
 		
 		intList.printList();
-		
+		System.out.println();
+		//intList.printListBackwards();
 		intList.sortAscending();
 		System.out.println();
 		intList.printList();
+		System.out.println();
+		//intList.printListBackwards();
 	}
 	
+	//@Test
+	public void testSort2() {
+		System.out.println("\n\ntestSort2");
+		intList.insert(3);
+		intList.insert(4);
+		intList.insert(1);
+		intList.insert(5);
+		
+		intList.printList();
+		System.out.println();;
+		intList.printList();
+		System.out.println();
+		intList.printListBackwards();
+	}
+	
+	//@Test
+	public void testSort3() {
+		System.out.println("\n\ntestSort3");
+		intList.insert(3);
+		intList.insert(5);
+		intList.insert(1);
+		intList.insert(7);
+		
+		intList.printList();
+		System.out.println();;
+		intList.printList();
+		System.out.println();
+		intList.printListBackwards();
+	}
+	
+	//@Test
+	public void testSort4() {
+		System.out.println("\n\ntestSort4");
+		for(int i = 1; i < 10; i++) {
+			intList.insert(i);
+		}
+		
+		intList.printList();
+		System.out.println();
+		intList.sortAscending();
+		intList.printList();
+	}
 }
